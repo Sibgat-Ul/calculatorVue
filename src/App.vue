@@ -54,13 +54,37 @@
   background: rgb(11, 243, 11);
 }
 
-input {
-  width: 520px;
-  height: 75px;
-  border: none;
+.disMain {
+  margin: auto;
+  width: 540px;
+  height: 80px;
+  max-height: 80px;
   background: #efefef;
-  text-align: end;
-  padding: 0px 20px;
-  font-size: 27px;
+  padding: 2px;
 }
+
+div.disMain {
+  margin: auto;
+  border: none;
+  text-align: end;
+  font-size: 27px;
+  padding: auto;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.disP {
+  margin: 0px;
+}
+
+input {
+  margin: auto;
+  border: none;
+  text-align: end;
+  font-size: 27px;
+  height: 80px;
+  max-height: 80px;
+}
+
 </style>
