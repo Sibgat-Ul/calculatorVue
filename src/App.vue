@@ -27,4 +27,40 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.btnCont {
+  margin: 3em auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 640px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  margin: .5em auto;
+  width: 10em;
+  height: 3em;
+  border: 0px;
+  border-radius: 15px;
+}
+
+.clear {
+  background: red;
+  color: white;
+}
+
+.equal {
+  background: rgb(11, 243, 11);
+}
+
+input {
+  width: 520px;
+  height: 75px;
+  border: none;
+  background: #efefef;
+  text-align: end;
+  padding: 0px 20px;
+  font-size: 27px;
+}
 </style>
