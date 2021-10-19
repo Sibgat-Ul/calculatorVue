@@ -3,7 +3,19 @@
         <div class="dis">
             <div class="" > {{ res }} </div>
             <div class="" > {{ dis }} </div>
-            <input type="text" name="" class="" v-model="n1">
+            <div class="">
+                <div class="p" style="text-align: end;">
+                    Vue Calculator
+                </div>
+
+                <input type="text" name="" class="disMain" v-if="equalPressed == false" 
+                        v-model="n1">
+                <div class="disMain" v-else>
+                    <p class="disP">
+                        {{ res }}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -30,17 +42,40 @@
         setup() {
             let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
             let n1 = ref(0);
+            let c1 = ref(0);
             let dis = ref(0);
             let res = ref(0);
             let equalPressed = ref(false);
+            let symbol = ref("");
 
             let enterValue = ((num) => {
+                equalPressed.value = false;
                 n1.value = num;
             })
 
             let equal = (() => {
+                c1.value = n1.value;
                 equalPressed.value = true;
-                dis.value = res.value;
+
+                switch(symbol.value) {
+                    case "+":
+                        res.value += c1.value;
+                        break;
+                    case "-":
+                        res.value -= c1.value;
+                        break;
+                    case "*":
+                        res.value *= c1.value;
+                        break;
+                    case "/":
+                        res.value /= c1.value;
+                        break;
+                    case "%":
+                        //percent();
+                        break;
+                }
+
+                n1.value = res.value;
             })
 
             let clear = (() => {
@@ -51,21 +86,55 @@
             })
                         
             let add = (() => {
-                res.value += n1.value;
-                console.log(res.value)
+                symbol.value = "+";
+
+                c1.value = n1.value;
+                res.value += c1.value;
+
+                n1.value = 0;
             });
             
             let ded = (() => {
-                res.value -= n1.value;
+                symbol.value = "-";
+                c1.value = n1.value;
+
+                if (res.value == 0) {
+                    res.value = c1.value;
+                    res.value -= c1.value;
+                } else if (res.value != 0) {
+                    res.value -= c1.value;
+                }
+
+                n1.value = 0;
             });
             
             let multi = (() => {
-                if(res.value == 0) res.value = n1.value;
-                else res.value *= n1.value;
+                symbol.value = "*";
+                c1.value = n1.value;
+
+                if(res.value == 0) {    
+                    res.value = c1.value;
+                    res.value *= c1.value;
+                } else if (res.value != 0) {
+                    res.value *= c1.value;
+                }
+
+                n1.value = 0;
             });
 
             let div = (() => {
-                res.value /= n1.value;
+                symbol.value = "/";
+                c1.value = n1.value;
+
+                if (res.value == 0) {
+                    res.value = c1.value
+                    res.value /= c1.value;
+                }
+                else {
+                    res.value /= c1.value;
+                }
+
+                n1.value = 0;
             })
 
             return {
